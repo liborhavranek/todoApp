@@ -9,13 +9,22 @@
 
 </head>
 <body>
-    {% if messages %}
-    <ul class="messages">
+    
         {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% if "error" in message.tags %}
+        <div class="alert alert-danger alert-dismissible fade show w-50 mx-auto" role="alert">
+            <strong>Hey</strong> {{ message }}
+          </div>
+          {% else %}
+          <div class="alert alert-success alert-dismissible fade show w-50 mx-auto" role="alert">
+            <strong>Hey</strong> {{ message }}
+          </div>
+        {% endif %}
         {% endfor %}
-    </ul>
-    {% endif %}
+
+ 
+
+
     {%  block content%}
 
 
