@@ -2,6 +2,32 @@
     {% block content%}
 
 
+    <div class="container-fluid px-5">
+
+<div class="w-50">
+
+<h1>Create new task:</h1>
+
+
+
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" class="form-control"><br>
+    <label for="desc">Description:</label><br>
+    <textarea id="desc" name="desc" class="form-control"></textarea><br>
+    <label for="due">Due Date:</label><br>
+    <input type="date" id="due" name="due" class="form-control"><br>
+    <input type="submit" value="Save" class="btn btn-primary">
+  </form> 
+
+
+</div>
+
+
+<div>
+
     {% for task in tasks %}
     <h3>{{task.title}}</h3>
     <p>{{task.desc}}</p>
@@ -12,5 +38,7 @@
 
 
     {% endfor%}
-    
+</div>
+
+</div>
     {% endblock content %}
