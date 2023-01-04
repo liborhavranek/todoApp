@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, response
+from .models import task
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    tasks = task.objects.all()
+    return render(request, 'index.html', {"tasks":tasks})

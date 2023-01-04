@@ -1,6 +1,16 @@
 {% extends 'base.html'%}
     {% block content%}
 
-    ahoj svete 
+
+    {% for task in tasks %}
+    <h3>{{task.title}}</h3>
+    <p>{{task.desc}}</p>
+    <p>{{task.created}}</p>
+    <p>{{task.due}}</p>
+
+    <p>{{task.completed}}</p>
+
+
+    {% endfor%}
     
     {% endblock content %}
