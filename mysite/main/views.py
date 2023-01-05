@@ -10,6 +10,8 @@ import datetime
 
 
 
+
+
 def index(request):
     tasks = Task.objects.all()
     # First, sort the tasks by due date
@@ -44,11 +46,23 @@ def index(request):
 def task(request, id):
     try:
         task = Task.objects.get(id=id)
-        return render(request, 'task.html', {"task":task})
+        task.duration = task.due - task.created
+        return render(request, 'task.html', {"task":task, "duration":task.duration})
     except Task.DoesNotExist:
         messages.error(request, 'Task with id "{}" does not exist'.format(id))
         return redirect('index')
     
     
+def delete_task(request, id):
+    try:
+        task = Task.objects.get(id=id)
+        task.delete()
+        messages.success(request, 'Task deleted successfully')
+    except Task.DoesNotExist:
+        messages.error(request, 'Task with id "{}" does not exist'.format(id))
+    return redirect('index')
     
+def home(request):
+    return render(request, 'home.html', {})
+
     

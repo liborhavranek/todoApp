@@ -36,6 +36,7 @@
     <p> {{ task.duration }} / dude</p>
     <p>{{task.completed}}</p>
     <a href="/task/{{task.id}}">Go to task </a>
+    <a href="{% url 'delete_task' task.id %}">Delete</a>
 
 
     {% endfor%}
