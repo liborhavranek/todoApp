@@ -3,12 +3,22 @@ from django.http import HttpResponse, response
 from .models import Task
 from django.contrib import messages
 from datetime import datetime
+from itertools import chain
 import datetime
 
 # Create your views here.
 
+
+
 def index(request):
-    tasks = Task.objects.all().order_by('due')
+    tasks = Task.objects.all()
+    # First, sort the tasks by due date
+    tasks = tasks.order_by('due')
+    # Then, separate the completed tasks from the incomplete tasks
+    completed_tasks = tasks.filter(complete=True)
+    incomplete_tasks = tasks.filter(complete=False)
+    # Concatenate the incomplete tasks and the completed tasks to form the final list
+    tasks = list(chain(incomplete_tasks, completed_tasks))
     for task in tasks:
         task.duration = task.due - task.created
     if request.method == 'POST':
@@ -28,9 +38,6 @@ def index(request):
         messages.add_message(request, messages.SUCCESS, 'Task created successfully!')
         return redirect('index')
     return render(request, 'index.html', {"tasks":tasks})
-
-
-
 
 
 
