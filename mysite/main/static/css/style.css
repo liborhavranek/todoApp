@@ -1,3 +1,41 @@
 h1{
-    color: blue;
+    color: #66cf69;
+}
+
+.color-text{
+    color: #66cf69;
+}
+
+.task-container{
+    background: rgb(207,102,204);
+    background: linear-gradient(90deg, rgba(207,102,204,1) 0%, rgba(121,9,107,1) 100%);
+}
+
+.create-task{
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-radius: 8%;
+    line-height: 90%;
+}
+
+.send-task-button{
+    background-color: #66cf69!important;
+}
+
+.task-board{
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-radius: 2%;
+    line-height: 90%;
+}
+
+.task-div{
+    background-color: #111727;
+    border-radius: 25px
+}
+
+.description-text{
+    color: white;
+}
+
+.delete-button{
+    right: -100px;
 }

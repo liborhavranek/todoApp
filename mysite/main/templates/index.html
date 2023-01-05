@@ -1,10 +1,9 @@
 {% extends 'base.html'%}
     {% block content%}
 
-<center>
-    <div class="container-fluid px-5">
 
-<div class="w-50">
+
+<div class="w-50 py-5 px-5 create-task">
 
 <h1>Create new task:</h1>
 
@@ -13,35 +12,87 @@
 
   <form method="post">
     {% csrf_token %}
-    <label for="title">Title:</label><br>
+
+    <div class="row d-flex align-items-center">
+      <div class="col-2 ">
+    <label for="title"><h3 class="color-text">Title:</h3></label>
+      </div>
+      <div class="col-10 d-flex align-items-center">
+
     <input type="text" id="title" name="title" class="form-control" placeholder="Title"><br>
-    <label for="desc">Description:</label><br>
+  </div>
+</div>
+<br>
+
+    <div class="row d-flex align-items-center">
+      <div class="col-2">
+    <label for="desc"><h3 class="color-text">Task:</h3></label>
+  </div>
+  <div class="col-10 d-flex align-items-center">
     <textarea id="desc" name="desc" class="form-control" placeholder="Your task"></textarea><br>
-    <label for="due">Due Date:</label><br>
-    <input type="datetime-local" id="due" name="due" class="form-control" value="{{current_time}}"><br>
-    <input type="submit" value="Save" class="btn btn-primary">
+  </div>
+  </div>
+   
+   <br>
+
+  <div class="row d-flex align-items-center">
+    <div class="col-2">
+    <label for="due"><h3 class="color-text">Date:</h3></label>
+  </div>
+<div class="col-10 d-flex align-items-center">
+    <input type="datetime-local" id="due" name="due" class="form-control" value="">
+  </div>
+</div>
+
+
+  <br>
+    <input type="submit" value="Save Task" class="btn send-task-button">
   </form> 
 
 
 </div>
 
 
-<div>
+
+
+<div class="py-5 my-5 task-board">
+
+
 
     {% for task in tasks %}
-    <h3>{{task.title}}</h3>
-    <p>{{task.desc}}</p>
-    <p>{{task.created}}</p>
-    <p>{{task.due}}</p>
-    <p> {{ task.duration }} / dude</p>
+
+
+      <div class="task-div py-1 my-2 w-75">
+        <div class="row">
+          <div class="col-7">
+    <h5 class="color-text mx-5 text-start">{{task.title}}</h5>
+    <p class="description-text mx-5 text-start">{{task.desc}}</p>
+  </div>
+    <!-- <p>{{task.created}}</p>
+    <p>{{task.due}}</p> -->
+    <div class="col-3">
+    <p class="description-text"> Time expire: {{ task.duration }}</p>
     <p>{{task.completed}}</p>
-    <a href="/task/{{task.id}}">Go to task </a>
-    <a href="{% url 'delete_task' task.id %}">Delete</a>
+    
+
+
+ 
+  <a href="/task/{{task.id}}">Go to task >>> </a>
+</div>
+<div class="col-2 d-flex align-items-center delete-button"><a class="btn btn-danger" href="{% url 'delete_task' task.id %}">Delete</a> </div>
+
+</div>
+  </div>
+
+
 
 
     {% endfor%}
-</div>
 
+
+
+
+</div>
 </div>
 </center>
     {% endblock content %}

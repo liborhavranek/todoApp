@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'main',
 ]
 
-STATICFILES_DIRS = [BASE_DIR / "static",]
+
+STATICFILES_DIRS = [BASE_DIR / "main/static/css",]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

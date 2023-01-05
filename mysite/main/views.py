@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, response
 from .models import Task
 from django.contrib import messages
+from django.utils import timezone
 from datetime import datetime
 from itertools import chain
 import datetime
@@ -21,8 +22,9 @@ def index(request):
     incomplete_tasks = tasks.filter(complete=False)
     # Concatenate the incomplete tasks and the completed tasks to form the final list
     tasks = list(chain(incomplete_tasks, completed_tasks))
+    current_time = datetime.datetime.now().astimezone(timezone.utc)
     for task in tasks:
-        task.duration = task.due - task.created
+        task.duration = task.due - current_time
     if request.method == 'POST':
         title = request.POST['title']
         desc = request.POST['desc']
@@ -46,7 +48,8 @@ def index(request):
 def task(request, id):
     try:
         task = Task.objects.get(id=id)
-        task.duration = task.due - task.created
+        current_time = datetime.datetime.now().astimezone(timezone.utc)
+        task.duration = task.due - current_time
         return render(request, 'task.html', {"task":task, "duration":task.duration})
     except Task.DoesNotExist:
         messages.error(request, 'Task with id "{}" does not exist'.format(id))
