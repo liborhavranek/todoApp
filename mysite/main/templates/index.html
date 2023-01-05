@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
     {% block content%}
-
+    {% load timedelta_filter %}
 
 
 <div class="w-50 py-5 px-5 create-task">
@@ -69,7 +69,7 @@
           <div class="col-6"><h5 class="color-text mx-5 text-start">{{task.title}}</h5></div>
   
           <div class="col-6">
-          <p class="description-text text-end"> Time expire: {{ task.duration|timesince }}</p>
+          <p class="description-text text-end"> Time expire: {{ task.duration|timedelta:"{days_total} days, {hours2}h {minutes2}m" }}</p>
 
         </div>
         </div>
