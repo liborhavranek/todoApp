@@ -14,11 +14,11 @@
   <form method="post">
     {% csrf_token %}
     <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" class="form-control"><br>
+    <input type="text" id="title" name="title" class="form-control" placeholder="Title"><br>
     <label for="desc">Description:</label><br>
-    <textarea id="desc" name="desc" class="form-control"></textarea><br>
+    <textarea id="desc" name="desc" class="form-control" placeholder="Your task"></textarea><br>
     <label for="due">Due Date:</label><br>
-    <input type="datetime-local" id="due" name="due" class="form-control"><br>
+    <input type="datetime-local" id="due" name="due" class="form-control" value="{{current_time}}"><br>
     <input type="submit" value="Save" class="btn btn-primary">
   </form> 
 
@@ -33,8 +33,9 @@
     <p>{{task.desc}}</p>
     <p>{{task.created}}</p>
     <p>{{task.due}}</p>
-
+    <!-- <p> {{ task.duration }} / dude</p> -->
     <p>{{task.completed}}</p>
+    <a href="/task/{{task.id}}">Go to task </a>
 
 
     {% endfor%}
