@@ -64,14 +64,27 @@
 
       <div class="task-div py-1 my-2 w-75">
         <div class="row">
+          <div class="col-11">
+        <div class="row">
+          <div class="col-6"><h5 class="color-text mx-5 text-start">{{task.title}}</h5></div>
+  
+          <div class="col-6">
+          <p class="description-text text-end"> Time expire: {{ task.duration }}</p>
+        </div>
+        </div>
+
+
+
+
+        <div class="row">
           <div class="col-7">
-    <h5 class="color-text mx-5 text-start">{{task.title}}</h5>
+    
     <p class="description-text mx-5 text-start">{{task.desc}}</p>
   </div>
     <!-- <p>{{task.created}}</p>
     <p>{{task.due}}</p> -->
     <div class="col-3">
-    <p class="description-text"> Time expire: {{ task.duration }}</p>
+    
     <p>{{task.completed}}</p>
     
 
@@ -79,11 +92,12 @@
  
   <a href="/task/{{task.id}}">Go to task >>> </a>
 </div>
-<div class="col-2 d-flex align-items-center delete-button"><a class="btn btn-danger" href="{% url 'delete_task' task.id %}">Delete</a> </div>
 
 </div>
+</div>
+<div class="col-1 d-flex align-items-center delete-button"><a class="btn btn-danger" href="{% url 'delete_task' task.id %}"><i class="fa-solid fa-trash"></i></a> </div>
   </div>
-
+</div>
 
 
 

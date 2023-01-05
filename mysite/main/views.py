@@ -68,4 +68,3 @@ def delete_task(request, id):
 def home(request):
     return render(request, 'home.html', {})
 
-    
