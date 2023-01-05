@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
     {% block content%}
 
-
+<center>
     <div class="container-fluid px-5">
 
 <div class="w-50">
@@ -33,7 +33,7 @@
     <p>{{task.desc}}</p>
     <p>{{task.created}}</p>
     <p>{{task.due}}</p>
-    <!-- <p> {{ task.duration }} / dude</p> -->
+    <p> {{ task.duration }} / dude</p>
     <p>{{task.completed}}</p>
     <a href="/task/{{task.id}}">Go to task </a>
 
@@ -42,4 +42,5 @@
 </div>
 
 </div>
+</center>
     {% endblock content %}
