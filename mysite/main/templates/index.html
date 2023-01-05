@@ -88,12 +88,27 @@
     
     <p>{{task.completed}}</p>
     
+
+
+
+
+
+    {% if task.complete == 1 %}
     <form method="POST" action="{% url 'update-complete' task.id %}">
       {% csrf_token %}
-      <input type="submit" value="Toggle Complete">
+      <input type="submit" value="Uncomplete" class="btn btn-warning">
+    {{task.time_complete}}
+    {% else %}
+    <form method="POST" action="{% url 'update-complete' task.id %}">
+      {% csrf_token %}
+      <input type="submit" value="Complete" class="btn btn-success">
     </form>
+    <p>INCOMPLETE</p>
+    {% endif %}
 
- 
+
+
+
   <a href="/task/{{task.id}}">Go to task >>> </a>
 </div>
 

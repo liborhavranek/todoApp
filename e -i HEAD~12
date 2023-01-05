@@ -1,0 +1,83 @@
+[33mcommit def0597d9b4aee9a1bde84aba4f92f592ead3415[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 21:09:40 2023 +0100
+
+    time is formated correct
+
+[33mcommit 1b18092d20466f674a2d60c0e878bd6f556af249[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 20:45:26 2023 +0100
+
+    button complete incomplete working
+
+[33mcommit 18052b59faa1567e723cece47b86d7cc473b6489[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 18:43:55 2023 +0100
+
+    look much more better
+
+[33mcommit 4ef4200053ee57bea44b0686a29637b64b33b0b5[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 18:02:10 2023 +0100
+
+    app look much more better
+
+[33mcommit 2778bbc108fb4a1d3f524a9e60711242f7965359[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 03:51:32 2023 +0100
+
+    delete task working good
+
+[33mcommit c608c02e5fd2a9b315df409df2ae104c94e51da4[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 02:39:29 2023 +0100
+
+    css is implement and working good
+
+[33mcommit 71af91c42b9a5f055b8545a6f97ebf17fd48d89a[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 02:25:45 2023 +0100
+
+    sort working perfect now
+
+[33mcommit b41183fb2f7a57d244ce077aabe779e6d19a525b[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Thu Jan 5 02:11:23 2023 +0100
+
+    sort working contorl form is okay date control no
+
+[33mcommit 1cc5d30faa1547707f745cff0fd14c6eb3501595[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Wed Jan 4 23:33:59 2023 +0100
+
+    page for each task created
+
+[33mcommit 7c9a2838f2d1a1e977d86a6a6828ac2474cc032b[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Wed Jan 4 22:33:38 2023 +0100
+
+    message is showed
+
+[33mcommit f0e0025826a1d7205ed575594e279cef07aee372[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Wed Jan 4 21:57:45 2023 +0100
+
+    save task from form working excelent
+
+[33mcommit 000afdf390f8d3969f97a508305a928506a05d38[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Wed Jan 4 21:21:53 2023 +0100
+
+    tasks are rendered to homepage
+
+[33mcommit 316ccdf857019ce153f39bb19a5f79300ee0f6d7[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Wed Jan 4 21:08:54 2023 +0100
+
+    server work good, templates too, db is created
+
+[33mcommit 233c517a23c9e7e23c7ecab0558111b070d70990[m
+Author: liborhavranek <liborhavranek91@gmail.com>
+Date:   Wed Jan 4 20:16:43 2023 +0100
+
+    first commit

@@ -83,11 +83,12 @@ def home(request):
 
 
 def update_complete(request, id):
-  if request.method == 'POST':
-    # Update the complete field
-    task = Task.objects.get(pk=id)
-    task.complete = not task.complete
-    task.save()
-    return redirect('index')
-  else:
-    return render(request, 'form.html')
+    if request.method == 'POST':
+        task = Task.objects.get(pk=id)
+        task.complete = not task.complete
+        if task.complete:
+            task.time_complete = datetime.datetime.now()
+        task.save()
+        return redirect('index')
+    else:
+        return render(request, 'index.html')
