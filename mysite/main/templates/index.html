@@ -69,7 +69,8 @@
           <div class="col-6"><h5 class="color-text mx-5 text-start">{{task.title}}</h5></div>
   
           <div class="col-6">
-          <p class="description-text text-end"> Time expire: {{ task.duration }}</p>
+          <p class="description-text text-end"> Time expire: {{ task.duration|timesince }}</p>
+
         </div>
         </div>
 
@@ -87,7 +88,10 @@
     
     <p>{{task.completed}}</p>
     
-
+    <form method="POST" action="{% url 'update-complete' task.id %}">
+      {% csrf_token %}
+      <input type="submit" value="Toggle Complete">
+    </form>
 
  
   <a href="/task/{{task.id}}">Go to task >>> </a>

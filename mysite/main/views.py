@@ -12,7 +12,6 @@ import datetime
 
 
 
-
 def index(request):
     tasks = Task.objects.all()
     # First, sort the tasks by due date
@@ -25,11 +24,18 @@ def index(request):
     current_time = datetime.datetime.now().astimezone(timezone.utc)
     for task in tasks:
         task.duration = task.due - current_time
+    print(task.due)
+    print(current_time)
+    print(type(task.due))
+    print(type(current_time))
+    print(task.duration)
+    print(type(task.duration))
     if request.method == 'POST':
         title = request.POST['title']
         desc = request.POST['desc']
         due = request.POST['due']
         due = datetime.datetime.strptime(due, '%Y-%m-%dT%H:%M')
+
         if len(title) < 3:
             messages.error(request,'Title must be longer than 3 characters long')
         elif len(desc) < 10: 
@@ -42,6 +48,12 @@ def index(request):
         messages.add_message(request, messages.SUCCESS, 'Task created successfully!')
         return redirect('index')
     return render(request, 'index.html', {"tasks":tasks})
+
+
+
+
+
+
 
 
 
@@ -68,3 +80,14 @@ def delete_task(request, id):
 def home(request):
     return render(request, 'home.html', {})
 
+
+
+def update_complete(request, id):
+  if request.method == 'POST':
+    # Update the complete field
+    task = Task.objects.get(pk=id)
+    task.complete = not task.complete
+    task.save()
+    return redirect('index')
+  else:
+    return render(request, 'form.html')
