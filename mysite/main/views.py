@@ -24,12 +24,6 @@ def index(request):
     current_time = datetime.datetime.now().astimezone(timezone.utc)
     for task in tasks:
         task.duration = task.due - current_time
-    print(task.due)
-    print(current_time)
-    print(type(task.due))
-    print(type(current_time))
-    print(task.duration)
-    print(type(task.duration))
     if request.method == 'POST':
         title = request.POST['title']
         desc = request.POST['desc']
@@ -45,7 +39,7 @@ def index(request):
         else:
             task = Task(title=title, desc=desc, due=due)
             task.save()
-        messages.add_message(request, messages.SUCCESS, 'Task created successfully!')
+            messages.add_message(request, messages.SUCCESS, 'Task created successfully!')
         return redirect('index')
     return render(request, 'index.html', {"tasks":tasks})
 

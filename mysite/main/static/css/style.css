@@ -2,6 +2,11 @@ h1{
     color: #66cf69;
 }
 
+.color-text-red{
+    color: red !important;
+}
+
+
 .color-text{
     color: #66cf69;
 }
@@ -39,3 +44,4 @@ h1{
 .delete-button{
     right: -100px;
 }
+

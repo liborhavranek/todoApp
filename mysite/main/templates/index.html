@@ -53,8 +53,6 @@
 </div>
 
 
-
-
 <div class="py-5 my-5 task-board">
 
 
@@ -63,19 +61,22 @@
 
 
       <div class="task-div py-1 my-2 w-75">
+
         <div class="row">
           <div class="col-11">
+
         <div class="row">
           <div class="col-6"><h5 class="color-text mx-5 text-start">{{task.title}}</h5></div>
   
           <div class="col-6">
+            {% if task.duration.total_seconds > 0 %}
           <p class="description-text text-end"> Time expire: {{ task.duration|timedelta:"{days_total} days, {hours2}h {minutes2}m" }}</p>
+            {% else %}
 
+            <p class="description-text text-end color-text-red">expired</p>
+            {% endif %}
         </div>
         </div>
-
-
-
 
         <div class="row">
           <div class="col-7">
@@ -84,46 +85,63 @@
   </div>
     <!-- <p>{{task.created}}</p>
     <p>{{task.due}}</p> -->
-    <div class="col-3">
+    <div class="col-4">
     
+
+    </div>
+
+<div class="row">
+
     <p>{{task.completed}}</p>
     
 
+    <div class="col-9">
 
 
-
+<div class="row">
 
     {% if task.complete == 1 %}
+    <div class="col-5 justify-content-end py-2">
     <form method="POST" action="{% url 'update-complete' task.id %}">
       {% csrf_token %}
-      <input type="submit" value="Uncomplete" class="btn btn-warning">
-    {{task.time_complete}}
+      <input type="submit" value="Set uncomplete" class="btn btn-warning">
+    </div>
+    <div class="col-7 text-start align-self-center">
+    <p class="color-text">Complete at: {{task.time_complete}}</p>
+  </div>
     {% else %}
+    <div class="col-5 justify-content-end py-2 align-self-center">
+
     <form method="POST" action="{% url 'update-complete' task.id %}">
       {% csrf_token %}
-      <input type="submit" value="Complete" class="btn btn-success">
+      <input type="submit" value="Set complete" class="btn btn-success">
     </form>
-    <p>INCOMPLETE</p>
+  </div>
+  <div class="col-7 text-start my-auto pt-3">
+    <p class="color-text-red">INCOMPLETE</p>
+  </div>
     {% endif %}
+  </div>
 
+  </div>
 
-
+  <div class="col-3 my-auto">
 
   <a href="/task/{{task.id}}">Go to task >>> </a>
 </div>
 
 </div>
 </div>
+
+</div>
 <div class="col-1 d-flex align-items-center delete-button"><a class="btn btn-danger" href="{% url 'delete_task' task.id %}"><i class="fa-solid fa-trash"></i></a> </div>
   </div>
+
 </div>
 
 
 
     {% endfor%}
-
-
-
 
 </div>
 </div>
