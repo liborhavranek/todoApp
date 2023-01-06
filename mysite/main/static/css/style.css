@@ -2,9 +2,6 @@ h1{
     color: #66cf69;
 }
 
-.color-text-red{
-    color: red !important;
-}
 
 
 .color-text{
@@ -14,6 +11,7 @@ h1{
 .task-container{
     background: rgb(207,102,204);
     background: linear-gradient(90deg, rgba(207,102,204,1) 0%, rgba(121,9,107,1) 100%);
+
 }
 
 .create-task{
@@ -45,3 +43,7 @@ h1{
     right: -100px;
 }
 
+
+.color-text-red{
+    color: red;
+}

@@ -1,11 +1,85 @@
 {% extends 'base.html'%}
     {% block content%}
 
-    <h3>{{task.title}}</h3>
-    <p>{{task.desc}}</p>
-    <p>{{task.created}}</p>
-    <p>{{task.due}}</p>
-    <p>Duration: {{ duration }}</p>
-    <p>{{task.completed}}</p>
 
+
+    <div class="w-50 py-5 px-5 create-task">
+
+        <h1 class="color-text">Task </h1>
+
+    <h3 class="color-text pb-3">{{task.title}}</h3>
+    <p class="description-text pb-3">{{task.desc}}</p>
+    <div class="row">
+        <div class="col-6 color-text"><p> Date of created task:</p></div>
+        <div class="col-6  color-text"><p> Planning of complete:</p></div>
+    <div class="row pb-3">
+
+
+        <div class="col-6  color-text"><p>{{task.created}}</p></div>
+        <div class="col-6  color-text"><p> {{task.due}}</p></div>
+    
+</div>
+
+
+{% if task.duration.total_seconds > 0 %}
+    <p class="description-text pb-3">Duration: {{ task.duration }}</p>
+    {% else %}
+    <p class="color-text-red pb-3">expired</p>
+    {%endif%}
+
+
+
+<p class="description-text">Task status</p>
+    {% if task.complete == 1 %}
+    <p class="color-text pb-3" >COMPLETE</p>
+    {% else %}
+    <p class="color-text-red pb-3" >INCOMPLETE</p>
+    {% endif %}
+
+
+
+    <div class="row">
+
+<div class="col-4">
+
+
+
+    {% if task.complete == 1 %}
+    <form method="POST" action="{% url 'update-complete-task' task.id %}">
+      {% csrf_token %}
+      <input type="submit" value="Set uncomplete" class="btn btn-warning">
+
+
+    {% else %}
+
+    <form method="POST" action="{% url 'update-complete-task' task.id %}">
+      {% csrf_token %}
+      <input type="submit" value="Set complete" class="btn btn-success">
+    </form>
+
+    {% endif %}
+
+
+
+
+
+
+
+</div>
+
+<div class="col-4">
+
+    <a class="btn btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+</div>
+
+
+<div class="col-4">
+
+    <a href="/"> Tasklist >>> </a>
+</div>
+    </div>
+
+</div>
+</div>
+</center>
     {% endblock content %}

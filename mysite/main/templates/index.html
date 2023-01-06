@@ -2,6 +2,8 @@
     {% block content%}
     {% load timedelta_filter %}
 
+    
+
 <div class="w-50 py-5 px-5 create-task">
 
 <h1>Create new task:</h1>
@@ -68,11 +70,13 @@
           <div class="col-6"><h5 class="color-text mx-5 text-start">{{task.title}}</h5></div>
   
           <div class="col-6">
-            {% if task.duration.total_seconds > 0 %}
+            {%if task.duration.total_seconds < 0 and task.complete == 1 %}
+            <p class="text-end color-text-red">You can delete this taks </p>
+            {% elif task.duration.total_seconds > 0 %}
           <p class="description-text text-end"> Time expire: {{ task.duration|timedelta:"{days_total} days, {hours2}h {minutes2}m" }}</p>
             {% else %}
 
-            <p class="description-text text-end color-text-red">expired</p>
+            <p class="text-end color-text-red">expired</p>
             {% endif %}
         </div>
         </div>
@@ -91,7 +95,7 @@
 
 <div class="row">
 
-    <p>{{task.completed}}</p>
+
     
 
     <div class="col-9">

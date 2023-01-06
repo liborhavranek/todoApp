@@ -86,3 +86,14 @@ def update_complete(request, id):
         return redirect('index')
     else:
         return render(request, 'index.html')
+    
+def update_complete_task(request, id):
+    if request.method == 'POST':
+        task = Task.objects.get(pk=id)
+        task.complete = not task.complete
+        if task.complete:
+            task.time_complete = datetime.datetime.now()
+        task.save()
+        return redirect('task', id=id)
+    else:
+        return render(request, 'task/<int:id>')
