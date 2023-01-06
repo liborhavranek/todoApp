@@ -22,6 +22,7 @@ def index(request):
     # Concatenate the incomplete tasks and the completed tasks to form the final list
     tasks = list(chain(incomplete_tasks, completed_tasks))
     current_time = datetime.datetime.now().astimezone(timezone.utc)
+
     for task in tasks:
         task.duration = task.due - current_time
     if request.method == 'POST':
@@ -29,7 +30,6 @@ def index(request):
         desc = request.POST['desc']
         due = request.POST['due']
         due = datetime.datetime.strptime(due, '%Y-%m-%dT%H:%M')
-
         if len(title) < 3:
             messages.error(request,'Title must be longer than 3 characters long')
         elif len(desc) < 10: 
