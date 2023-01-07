@@ -9,15 +9,6 @@
     <br>
     <form method="POST">
         {% csrf_token %}
-        <div class="mb-3 row">
-            <div class="col-3">
-          <label for="email" class="form-label color-text">Email address:</label>
-        </div>
-        <div class="col-9">
-          <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
-        </div>
-    </div>
-
 
         <div class="mb-3">
             <div class="row">
@@ -30,9 +21,6 @@
         </div>
     </div>
 
-
-
-
         <div class="mb-3">
             <div class="row">
                 <div class="col-3">
@@ -44,19 +32,8 @@
     </div>
     </div>
 
-
-        <div class="mb-3">
-            <div class="row">
-                <div class="col-3">
-            <label for="confirm_password" class="form-label color-text">Password again:</label>
-        </div>
-        <div class="col-9">
-            <input type="password" name="confirm_password" class="form-control" id="confirm_password">
-          </div>
-        </div>
-    </div>
 <div class="text-center">
-        <button type="submit" class="btn btn-primary">Create new user</button>
+        <button type="submit" class="btn btn-primary">Login</button>
     </div>
       </form>
     </div>
