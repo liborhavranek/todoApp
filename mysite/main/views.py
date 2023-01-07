@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, response
 from .models import Task
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import messages,auth
 from django.utils import timezone
 from datetime import datetime
 from itertools import chain
@@ -11,9 +13,10 @@ import datetime
 
 
 
-
+@login_required
 def index(request):
-    tasks = Task.objects.all()
+    current_user = request.user
+    tasks = Task.objects.filter(user=current_user)
     # First, sort the tasks by due date
     tasks = tasks.order_by('due')
     # Then, separate the completed tasks from the incomplete tasks
@@ -29,6 +32,7 @@ def index(request):
         title = request.POST['title']
         desc = request.POST['desc']
         due = request.POST['due']
+        user = request.user
         due = datetime.datetime.strptime(due, '%Y-%m-%dT%H:%M')
         if len(title) < 3:
             messages.error(request,'Title must be longer than 3 characters long')
@@ -37,7 +41,7 @@ def index(request):
         elif due < datetime.datetime.now():
             messages.error(request,'Due date and time must be in the future')
         else:
-            task = Task(title=title, desc=desc, due=due)
+            task = Task(title=title, desc=desc, due=due, user=user)
             task.save()
             messages.add_message(request, messages.SUCCESS, 'Task created successfully!')
         return redirect('index')
@@ -61,14 +65,14 @@ def task(request, id):
         messages.error(request, 'Task with id "{}" does not exist'.format(id))
         return redirect('index')
     
-    
+
 def delete_task(request, id):
     try:
         task = Task.objects.get(id=id)
         task.delete()
         messages.success(request, 'Task deleted successfully')
     except Task.DoesNotExist:
-        messages.error(request, 'Task with id "{}" does not exist'.format(id))
+        messages.error(request, 'Task does not exist')
     return redirect('index')
     
 def home(request):
@@ -86,7 +90,8 @@ def update_complete(request, id):
         return redirect('index')
     else:
         return render(request, 'index.html')
-    
+
+
 def update_complete_task(request, id):
     if request.method == 'POST':
         task = Task.objects.get(pk=id)
@@ -97,3 +102,46 @@ def update_complete_task(request, id):
         return redirect('task', id=id)
     else:
         return render(request, 'task/<int:id>')
+    
+
+# def register(request):
+#     if request.method =='POST':
+#         email = request.POST["email"]
+#         username = request.POST["username"]
+#         password = request.POST["password"]
+#         confirm_password = request.POST["confirm_password"]
+#         if password == confirm_password:
+#             if User.objects.filter(username=username).exist():
+#                 messages.error(request, 'Username already exist')
+#             elif User.objects.filter(email=email).exist(): 
+#                 messages.error(request, 'Email already exist')
+#             else:
+#                 user = User.object.create_user(email=email, username=username, password=password, confirm_password=confirm_password)
+#                 user.set_password(password)
+#                 user.save()
+#                 messages.success(request, 'You are registered successfully')
+#                 print('success')
+#                 return render(request, 'index.html')
+#     return render(request, "register.html")
+
+            
+def register(request):
+    if request.method =='POST':
+        email = request.POST["email"]
+        username = request.POST["username"]
+        password = request.POST["password"]
+        confirm_password = request.POST["confirm_password"]
+        if password !=confirm_password:
+            messages.error(request, 'Passwords must be the same')
+        if password == confirm_password:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username already exists')
+            elif User.objects.filter(email=email).exists(): 
+                messages.error(request, 'Email already exists')
+            else:
+                user = User.objects.create_user(email=email, username=username, password=password)
+                user.set_password(password)
+                user.save()
+                messages.success(request, 'You are registered successfully')
+                return redirect('index')
+    return render(request, "register.html")

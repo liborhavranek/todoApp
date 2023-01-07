@@ -16,10 +16,11 @@
 </head>
 <body>
     
+    {% include 'navbar.html' %}
+
     <center>
         <div class="container-fluid task-container py-5 px-5 min-vh-100">
 
- 
             {% for message in messages %}
             {% if "error" in message.tags %}
             <div class="alert alert-danger alert-dismissible fade show w-50 mx-auto" role="alert">

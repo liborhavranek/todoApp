@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+    {% block content%}
+
+
+<div class="w-50 text-start">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <div class="col-3">
+          <label for="email" class="form-label color-text">Email address:</label>
+        </div>
+        <div class="col-9">
+          <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+        </div>
+    </div>
+
+
+        <div class="mb-3">
+            <div class="row">
+                <div class="col-3">
+            <label for="username" class="form-label color-text">Username:</label>
+        </div>
+        <div class="col-9">
+            <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+          </div>
+        </div>
+    </div>
+
+
+
+
+        <div class="mb-3">
+            <div class="row">
+                <div class="col-3">
+          <label for="password" class="form-label color-text">Password:</label>
+        </div>
+        <div class="col-9">
+          <input type="password" name="password" class="form-control" id="password">
+        </div>
+    </div>
+    </div>
+
+
+        <div class="mb-3">
+            <div class="row">
+                <div class="col-3">
+            <label for="confirm_password" class="form-label color-text">Password again:</label>
+        </div>
+        <div class="col-9">
+            <input type="password" name="confirm_password" class="form-control" id="confirm_password">
+          </div>
+        </div>
+    </div>
+<div class="text-center">
+        <button type="submit" class="btn btn-primary">Create new user</button>
+    </div>
+      </form>
+    </div>
+
+
+    </div>
+</center>
+    {% endblock content %}
