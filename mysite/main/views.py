@@ -76,7 +76,6 @@ def delete_task(request, id):
         messages.error(request, 'Task does not exist')
     return redirect('index')
     
-@login_required(login_url='/login')
 def home(request):
     return render(request, 'home.html', {})
 
@@ -92,7 +91,6 @@ def update_complete(request, id):
         return redirect('index')
     else:
         return render(request, 'index.html')
-
 
 @login_required(login_url='/login')
 def update_complete_task(request, id):

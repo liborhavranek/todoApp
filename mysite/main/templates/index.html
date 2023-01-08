@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
     {% block content%}
     {% load timedelta_filter %}
+    {% load tz %}
 
     
 
@@ -41,7 +42,9 @@
     <label for="due"><h3 class="color-text">Date:</h3></label>
   </div>
 <div class="col-10 d-flex align-items-center">
+
     <input type="datetime-local" id="due" name="due" class="form-control" value="{% now "jS F Y H:i" %}">
+  
   </div>
 </div>
 
@@ -50,19 +53,22 @@
     <input type="submit" value="Save Task" class="btn send-task-button">
   </form> 
 
-
 </div>
 
 
 <div class="py-5 my-5 task-board">
 
 
+  {% if tasks|length == 0 %}
+  <h1>Add your first task</h1>
+{% else %}
+
 
     {% for task in tasks %}
 
-
       <div class="task-div py-1 my-2 w-75">
-
+     
+    
         <div class="row">
           <div class="col-11">
 
@@ -145,7 +151,7 @@
 
 
     {% endfor%}
-
+    {% endif %}
 </div>
 </div>
 </center>
