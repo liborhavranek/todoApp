@@ -66,6 +66,8 @@ def task(request, id):
         messages.error(request, 'Task with id "{}" does not exist'.format(id))
         return redirect('index')
     
+    
+    
 @login_required(login_url='/login')
 def delete_task(request, id):
     try:
@@ -142,6 +144,8 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid username or password')
     return render(request, 'login.html')
+
+
 
 @login_required(login_url='/login')
 def logout_view(request):
